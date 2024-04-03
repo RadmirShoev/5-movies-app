@@ -1,0 +1,60 @@
+{
+    "env":{
+        "browser": true,
+        "es6": true,
+        "node": true,
+        "es2021": true
+    },
+    "ignorePatterns": ["node_modules", "dist", "build"],
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:prettier/recommended",
+        "plugin:import/errors",
+        "plugin:import/warnings"
+      ],
+    "parserOptions": {
+        "ecmaFeatures": {
+          "jsx": true
+        },
+        "ecmaVersion": 12,
+        "sourceType": "module"
+      },
+    "plugins": ["react", "prettier", "import"],
+    "rules":{
+        "semi": "off",
+        "no-console":"off", // выключает запрет Console.log
+        "eol-last":"off",// В конце файла не должно быть пустых строк
+        "no-plusplus":"off", // Выключает ошибку при ++
+        "indent": "off", // настройка отступов. Разрешает 2 пробела и 1 tab [2, "tab"]
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+        "no-return-assign":"off", //Функция Arrow не должна возвращать назначение.
+        "no-param-reassign":"off",
+        "react/forbid-prop-types": "off",
+        "react/destructuring-assignment": "off",
+        "react/prop-types": 0,
+        "import/no-unresolved": [2, { "caseSensitive": false }],
+        "import/order": [
+      2,
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ],
+        "newlines-between": "always"
+      }
+    ]
+    },
+    "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"],
+        "moduleDirectory": ["node_modules", "src/"]
+      }
+    }
+    }
+}

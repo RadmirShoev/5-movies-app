@@ -1,0 +1,110 @@
+
+.movie-card {
+    width: 451px;
+    height: 279px;
+}
+
+.image{
+    width: 183px;
+    height: 278px;
+}
+
+.movie-card__container {
+    display: flex;
+    justify-content: flex-start;
+    column-gap: 16px;
+}
+
+.movie-card__title{
+    font-family: 'Inter';
+    font-size: 16px;
+    font-weight: 400px;
+    margin-bottom: 0px;
+    margin-top: 10px;
+    margin: 0;
+
+    width: 200px;
+    height: 24px;
+    overflow: hidden;
+}
+
+.title-container{
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+
+.movie-card__rate{
+    margin-right:5px;
+    margin-top: 5px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    text-align: center;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.red-rate{
+    border: 2px solid #E90000;
+}
+.orange-rate{
+    border: 2px solid #E97E00;
+}
+.yellow-rate{
+    border: 2px solid #E9D100;
+}
+.green-rate{
+    border: 2px solid #66E900;
+}
+
+.movie-card__info{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    row-gap: 12px;
+}
+
+.genres-container{
+    width: 100%;
+    overflow-x: hidden;
+    flex-wrap: wrap;
+    column-gap: -5px;
+    row-gap: 5px;
+}
+
+.text-description{
+    width: 228px;
+    text-align: left;
+    font-size: 12px; 
+}
+
+.movie-card__stars{
+    padding: 0;
+    margin-bottom: 10px;
+    margin-top: auto;
+}
+
+@media (max-width: 420px ){
+    .movie-card{
+        width: 388px;
+        height: 245px;
+        margin-left: 16px;
+    }
+    .image{
+        width: 60px;
+        height: 91px;
+    }
+    .movie-card__container {
+        display: flex;
+        justify-content: flex-start;
+        column-gap: 16px;
+        height: 245px;
+    }
+
+}

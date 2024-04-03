@@ -1,0 +1,46 @@
+.loading-spin {
+    margin: 20px 50% ;
+}
+.app-alert {
+    margin-top: 30px;
+    margin-left: 32px;
+    margin-bottom: 30px;
+    width: 938px;
+}
+
+.app-pagination{
+    margin-left: 32px;
+    padding-bottom:20px;
+    width: 938px;
+    
+    
+    display: flex;
+    justify-content: center;
+}
+.tabs-container {
+    width: 160px;
+
+    padding-left: 10px;
+    padding-right: 26px;
+    padding-top: 10px;
+
+    margin: 0px auto;
+}
+
+@media (max-width: 420px ){
+    .app-alert {
+        margin-top: 30px;
+        margin-left: 16px;
+        margin-bottom: 30px;
+        width: 388px;
+    }
+    .app-pagination{
+        margin-left: 16px;
+        padding-bottom:20px;
+        width: 388px; 
+    }
+    .app-container {
+        margin: 0px;
+        padding: 0px;
+    }
+}
