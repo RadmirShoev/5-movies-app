@@ -42,7 +42,6 @@ export default class MovieCard extends Component {
       <MovieServiceConsumer>
         {(allGenresArray) => {
           let movieGenresName = [];
-          console.log(allGenresArray);
           movieGenreIds.forEach((elem) => {
             allGenresArray.forEach((genre) => {
               if (genre.id === elem) {
@@ -53,7 +52,7 @@ export default class MovieCard extends Component {
           let allTags = [];
 
           movieGenresName.forEach((genre) => {
-            let tag = <Tag>{genre}</Tag>;
+            let tag = <Tag key={genre.id}>{genre}</Tag>;
             allTags.push(tag);
           });
 

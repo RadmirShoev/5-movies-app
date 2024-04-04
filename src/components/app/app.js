@@ -22,7 +22,7 @@ export default class App extends Component {
       loading: true,
       error: false,
       totalResults: 0,
-      searchRequest: '',
+      searchRequest: 'Resident Evil',
       rated: false,
       tabItems: [
         {
@@ -99,12 +99,46 @@ export default class App extends Component {
 
   componentDidMount() {
     this.guestSession();
-    this.updateMovie('Кунгфу панда');
+    this.updateMovie('Resident Evil');
 
     this.movie.getGenres().then((res) => {
       this.allGenresArray = res.genres;
     });
   }
+
+  getMyRating = (page) => {
+    this.movie
+      .getRatedMovies(this.sessionId, page)
+      .then((response) => {
+        const films = response.results;
+        const newArr = [];
+
+        //Создаем масссив с укороченной инфой о фильмах
+        films.forEach((film) => {
+          const filmIfo = {
+            title: film.title,
+            description: film.overview,
+            image: `https://image.tmdb.org/t/p/w500${film['poster_path']}`,
+            date: film['release_date'],
+            id: film.id,
+            movieGenreIds: film['genre_ids'],
+            rate: film['vote_average'].toFixed(1),
+            myRating: film.rating,
+          };
+
+          newArr.push(filmIfo);
+        });
+
+        this.setState(() => {
+          return {
+            movieData: newArr,
+            loading: false,
+            totalResults: response['total_results'],
+          };
+        });
+      })
+      .catch(this.onError);
+  };
 
   //Переключение вкладок Serch и Rated
   ratedChange = () => {
@@ -115,45 +149,14 @@ export default class App extends Component {
           movieData: [],
         };
       });
-      this.movie
-        .getRatedMovies(this.sessionId)
-        .then((response) => {
-          const films = response.results;
-          const newArr = [];
-          console.log(films);
-          //Создаем масссив с укороченной инфой о фильмах
-          films.forEach((film) => {
-            const filmIfo = {
-              title: film.title,
-              description: film.overview,
-              image: `https://image.tmdb.org/t/p/w500${film['poster_path']}`,
-              date: film['release_date'],
-              id: film.id,
-              movieGenreIds: film['genre_ids'],
-              rate: film['vote_average'].toFixed(1),
-              myRating: film.rating,
-            };
-
-            newArr.push(filmIfo);
-          });
-          this.setState(() => {
-            return {
-              movieData: newArr,
-              loading: false,
-              totalResults: response['total_results'],
-            };
-          });
-        })
-        .catch(this.onError);
+      this.getMyRating(1);
     } else {
+      this.updateMovie(this.state.searchRequest, 1);
       this.setState((state) => {
         return {
           rated: !state.rated,
-          movieData: [1],
           loading: true,
           error: false,
-          totalResults: 0,
-          searchRequest: '',
         };
       });
     }
@@ -164,6 +167,14 @@ export default class App extends Component {
     this.myRatedMoviesMap.set(id, rate);
     // Отправляем новый рейтинг на сервер
     this.movie.addRating(id, rate, this.sessionId);
+  };
+
+  changePageOnPaginstion = (page) => {
+    if (this.state.rated) {
+      this.getMyRating(page);
+    } else {
+      this.updateMovie(this.state.searchRequest, page);
+    }
   };
 
   render() {
@@ -229,8 +240,9 @@ export default class App extends Component {
             defaultCurrent={1}
             total={totalResults}
             pageSize={20}
+            showSizeChanger={false}
             onChange={(page) => {
-              this.updateMovie(searchRequest, page);
+              this.changePageOnPaginstion(page);
             }}
           />
         </MovieServiceProvider>

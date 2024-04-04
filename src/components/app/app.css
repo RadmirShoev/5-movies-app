@@ -44,3 +44,11 @@
         padding: 0px;
     }
 }
+
+@media (max-width: 1010px ){
+    .app-alert,.app-pagination {
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}

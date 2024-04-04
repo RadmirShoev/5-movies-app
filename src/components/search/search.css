@@ -17,3 +17,10 @@
         height: 40px;
     }
 }
+@media (max-width: 1010px ){
+    .search-input{
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}

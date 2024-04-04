@@ -59,9 +59,9 @@ export default class MovieService {
   }
 
   //Получение оцененных фильмов
-  async getRatedMovies(sessionId) {
+  async getRatedMovies(sessionId, page = 1) {
     const response = await fetch(
-      `${this.baseUrl}/guest_session/${sessionId}/rated/movies?api_key=${this.apiKey}&language=en-US&page=${1}`,
+      `${this.baseUrl}/guest_session/${sessionId}/rated/movies?api_key=${this.apiKey}&language=en-US&page=${page}`,
       this.options
     );
     if (!response.ok) {
